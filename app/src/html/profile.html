@@ -79,7 +79,7 @@ request.onreadystatechange=function()
 	else
 	{document.getElementById("logout_btn").value="OOPs something went wrong";}
 }
-request.open('GET',"http://auth.vcap.me/user/logout",true);
+request.open('POST',"http://auth.vcap.me/user/logout",true);
 request.withCredentials=true;
 request.setRequestHeader('Authorization','Bearer');
 request.send(null);
