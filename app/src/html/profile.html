@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link href="style_profile.css" rel="stylesheet">
+	<title>Helping Hand</title>
+</head>
+<body>
+<div>
+	<div class="row">
+		<div class="col-lg-3">
+			<div class="side-nav">
+				<img class="img-responsive img-centered" src="profile.png" alt=""><br/>
+				<center><input type=button id=logout_btn value="Logout"></center>
+				<center><a href="/virtual_assistant_screen.html"><input type=button value="private counselling"></a></center>
+				<center><div id=info></div></center>
+			</div>
+		</div>
+		<div class="col-lg-9 col-lg-offset-3">
+			<nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+				<div class="navbar-header">
+					<a class="navbar-brand">Helping Hand</a>
+				</div>
+			</nav>
+		</div>
+	</div>
+		
+<section class="success">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5 col-lg-offset-2">
+					<div class="panel panel-primary">
+						<div class="panel-heading"><h4>Discussion Question</h4></div>
+						<div class="panel-body">
+					<div id=content></div>
+						<form role="form">
+							<div class="form-group">
+									<input class="form-control" type=text id=user_input>
+							</div>
+									<input type=button class="btn btn-default " id=btnAddAddress value="Submit Question">
+								
+						</form>
+					</div>
+					</div>
+				</div>
+				<div class="col-lg-5">
+						<div class="panel panel-primary">
+							<div class="panel-heading"><h4>Discussion Answer</h4></div>
+							<div class="panel-body">
+							<div id=answer_content></div>
+							<form role="form">
+								<div class="form-group">
+									<input type=text class="form-control" id=answer_text>
+								</div>
+	
+					
+								<input type=button class="btn btn-default" id=submit_answer value="Submit Answer">
+							
+							</form>
+							</div>
+						</div>
+				</div>
+	
+			</div>
+		</div>
+	</section>
+<script>
+var logout_btn=document.getElementById("logout_btn");
+logout_btn.onclick=function()
+{
+var request=new XMLHttpRequest();
+request.onreadystatechange=function()
+{
+	if(request.readyState===XMLHttpRequest.DONE&& request.status===200)
+	{document.getElementById("logout_btn").value="Thanks for visiting";
+	window.location.href="index.html";}
+	else
+	{document.getElementById("logout_btn").value="OOPs something went wrong";}
+}
+request.open('GET',"https://auth.coincide68.hasura-app.io/user/logout",true);
+request.withCredentials=true;
+request.setRequestHeader('Authorization','Bearer');
+request.send(null);
+document.getElementById("logout_btn").value="Please wait.."
+};
+window.onload=function()
+{
+	var allcookies=document.cookie;
+	document.getElementById("info").innerHTML="All cookies "+allcookies;
+}
+</script>
+<script>
+var send_btn=document.getElementById("btnAddAddress");
+send_btn.onclick=function()
+{
+	var request_object1=new XMLHttpRequest();
+	request_object1.onreadystatechange=function()
+	{
+		if(request_object1.readyState===XMLHttpRequest.DONE&&request_object1.status===200)
+		{	
+			//document.getElementById("content").innerHTML='<input type=button onclick="readAnswer(\''+JSON.parse(this.responseText).id+\') value=\'+user_input+\''>';
+			console.log(JSON.parse(this.responseText).id);
+			//document.getElementById("content").innerHTML='<input type="button" onClick="readAnswer(' + JSON.parse(this.responseText).id+ ')" value='+user_input+'/>';
+		}
+		else
+		{document.getElementById("content").innerHTML="cannot load your question";}
+	}
+	var user_input=document.getElementById("user_input").value;
+	var send_btn=document.getElementById("btnAddAddress");
+	var allcookies=document.cookie;
+	request_object1.open('POST',"https://data.coincide68.hasura-app.io/v1/query",true);
+	request_object1.withCredentials=true;
+	request_object1.setRequestHeader('Content-type','application/json');
+	request_object1.send(JSON.stringify({type:"insert",args:{table:"question",objects:[{question:user_input}]}}));
+	document.getElementById("btnAddAddress").value="success";
+};
+function readAnswer(x)
+{	console.log(x);
+	var request_object2=new XMLHttpRequest();
+	request_object2.onreadystatechange=function()
+	{
+		if(request_object2.readyState===XMLHttpRequest.DONE&&request_object2.status===200)
+		{	//alert(this.responseText.length);
+			//document.getElementById("content").innerHTML=this.responseText;
+			//alert("succcess");
+			//console.log(x);
+			var ans="";
+			var answers=JSON.parse(this.responseText);
+			for(var i=0;i<answers.length;i++){
+				//console.log(answers[i].answer);
+				ans+=`<p>${answers[i].answer}</p>`;
+			}
+			document.getElementById("answer_content").innerHTML=ans;
+		}
+		else
+		{//document.getElementById("content").innerHTML="cannot load your question";
+		//alert("not sucessfull");
+}
+	}
+	request_object2.open('POST',"https://data.coincide68.hasura-app.io/v1/query",true);
+	request_object2.withCredentials=true;
+	request_object2.setRequestHeader('Content-type','application/json');
+	var string1=request_object2.send(JSON.stringify({type:"select",args:{table:"answer",columns:["*"],where:{question_id:x}}}));
+	document.getElementById("btnAddAddress").value="success";
+
+}
+function SubmitAnswer(x1)
+{	
+	var submit_answer=document.getElementById("submit_answer");
+	console.log(x1);
+			submit_answer.onclick=function()
+			{	console.log(x1);
+				var request_object3=new XMLHttpRequest();
+				request_object3.onreadystatechange=function()
+				{
+					if(request_object3.readyState===XMLHttpRequest.DONE&&request_object3.status===200)
+					{
+								//document.getElementById("answer_content").innerHTML="refresh the page to see results";
+					}
+					else
+					{
+								//document.getElementById("answer_content").innerHTML="sorry try again";
+					}
+					var answer_text=document.getElementById("answer_text").value;
+					request_object3.open('POST',"https://data.coincide68.hasura-app.io/v1/query",true);
+					request_object3.withCredentials=true;
+					request_object3.sendRequestHeader('Content-type','application/json');
+					request_object3.send(JSON.stringify({type:"insert",args:{table:"answer",objects:[{answer:answer_text,question_id:x1}]}}));
+					console.log(this.responseText);
+					document.getElementById("submit_answer").value="Please Wait";
+				};
+			};
+}
+
+</script>
+<script>
+window.onload=function(){
+	var allcookies=document.cookie;
+	document.getElementById("info").innerHTML="All cookies "+allcookies;
+	var request1=new XMLHttpRequest();
+	request1.onreadystatechange=function(){
+		if(request1.readyState===XMLHttpRequest.DONE && request1.status===200)
+		{
+			
+			var questions = JSON.parse(this.responseText);
+			console.log(questions);
+			console.log(questions[2].question);
+			var con="arvind";
+			for(var i=0;i<questions.length;i++){
+				
+			con+=`<p>${questions[i].question}</p><input type=button value=replies onclick=readAnswer(${questions[i].id})>&nbsp<input type=button value=reply onclick=SubmitAnswer(${questions[i].id})>`;
+
+		}
+			document.getElementById("content").innerHTML=con;
+		}
+		else
+		{
+			document.getElementById("content").innerHTML="could not load questions";
+		}
+	};
+	request1.open('POST',"https://data.coincide68.hasura-app.io/v1/query",true);
+	request1.withCredentials=true;
+	request1.setRequestHeader('Content-type','application/json');
+	request1.send(JSON.stringify({type:"select",args:{table:"question",columns:["*"]}}));
+};
+</script>
+</body>
+</html>
+
+
