@@ -110,7 +110,7 @@ send_btn.onclick=function()
 	var user_input=document.getElementById("user_input").value;
 	var send_btn=document.getElementById("btnAddAddress");
 	var allcookies=document.cookie;
-	request_object1.open('POST',"https://data.coincide68.hasura-app.io/v1/query",true);
+	request_object1.open('POST',"http://data.vcap.me/v1/query",true);
 	request_object1.withCredentials=true;
 	request_object1.setRequestHeader('Content-type','application/json');
 	request_object1.send(JSON.stringify({type:"insert",args:{table:"question",objects:[{question:user_input}]}}));
@@ -139,7 +139,7 @@ function readAnswer(x)
 		//alert("not sucessfull");
 }
 	}
-	request_object2.open('POST',"https://data.coincide68.hasura-app.io/v1/query",true);
+	request_object2.open('POST',"http://data.vcap.me/v1/query",true);
 	request_object2.withCredentials=true;
 	request_object2.setRequestHeader('Content-type','application/json');
 	var string1=request_object2.send(JSON.stringify({type:"select",args:{table:"answer",columns:["*"],where:{question_id:x}}}));
@@ -164,7 +164,7 @@ function SubmitAnswer(x1)
 								//document.getElementById("answer_content").innerHTML="sorry try again";
 					}
 					var answer_text=document.getElementById("answer_text").value;
-					request_object3.open('POST',"https://data.coincide68.hasura-app.io/v1/query",true);
+					request_object3.open('POST',"http://data.vcap.me/v1/query",true);
 					request_object3.withCredentials=true;
 					request_object3.sendRequestHeader('Content-type','application/json');
 					request_object3.send(JSON.stringify({type:"insert",args:{table:"answer",objects:[{answer:answer_text,question_id:x1}]}}));
@@ -200,7 +200,7 @@ window.onload=function(){
 			document.getElementById("content").innerHTML="could not load questions";
 		}
 	};
-	request1.open('POST',"https://data.coincide68.hasura-app.io/v1/query",true);
+	request1.open('POST',"http://data.vcap.me/v1/query",true);
 	request1.withCredentials=true;
 	request1.setRequestHeader('Content-type','application/json');
 	request1.send(JSON.stringify({type:"select",args:{table:"question",columns:["*"]}}));

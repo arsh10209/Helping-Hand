@@ -60,7 +60,7 @@ send_btn.onclick=function()
 	//var user_id = JSON.parse(this.responseText).hasura_id;
 	var user_Id= getcookie_user_id();
 	console.log(user_Id);
-	request_object1.open('POST',"https://data.coincide68.hasura-app.io/v1/query",true);
+	request_object1.open('POST',"http://data.vcap.me/v1/query",true);
 	request_object1.withCredentials=true;
 	request_object1.setRequestHeader('Content-type','application/json');
 	request_object1.send(JSON.stringify({type:"insert",args:{table:"pquestion",objects:[{question:user_input,user_id:user_Id}]}}));
@@ -92,7 +92,7 @@ window.onload=function()
 			document.getElementById("content").innerHTML="error";
 		}
 		var user=getcookie_user_id();
-		request_obj1.open('POST',"https://data.coincide68.hasura-app.io/v1/query",true);
+		request_obj1.open('POST',"http://data.vcap.me/v1/query",true);
 		request_obj1.withCredentials=true;
 		request_obj1.setRequestHeader('Content-type','application/json');
 		request_obj1.send(JSON.stringify({type:"select",args:{table:"pquestion",columns:["*"],where:{user_id:user}}}));

@@ -125,7 +125,7 @@ login_btn.onclick=function()
 	var username= document.getElementById("username").value;
 	var password= document.getElementById("password").value;
 	requestobject.open('POST',"http://auth.vcap.me/login",true);
-	//requestobject.withCredentials=true;
+	requestobject.withCredentials=true;
 	requestobject.setRequestHeader('Content-type','application/json');
 	requestobject.send(JSON.stringify({username:username,password:password}));
 	document.getElementById("login_btn").value="Please wait..";
