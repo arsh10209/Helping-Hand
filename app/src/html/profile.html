@@ -129,10 +129,10 @@ function readAnswer(x)
 			var ans="";
 			var answers=JSON.parse(this.responseText);
 			for(var i=0;i<answers.length;i++){
-				//console.log(answers[i].answer);
-				ans+=`<p>${answers[i].answer}</p>`;
+				console.log(answers[i].answer);
+				//ans+=`<p>${answers[i].answer}</p>`;
 			}
-			document.getElementById("answer_content").innerHTML=ans;
+			//document.getElementById("answer_content").innerHTML=ans;
 		}
 		else
 		{//document.getElementById("content").innerHTML="cannot load your question";
