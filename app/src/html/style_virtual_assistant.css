@@ -30,3 +30,7 @@ body{
 	background:white;
 	border:3px;
 }
+#logout_btn
+{
+	background:#18BC9C; 
+}
