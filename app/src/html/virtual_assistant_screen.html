@@ -22,8 +22,9 @@
 					<div class="panel-heading">Private Counselling</div>
 					<div class="panel-body">
 						<div class="chatbox">
-	
-							<div id=cont></div>
+							<div class="chatlogs" id=cont>
+				
+							</div>
 							<br>	
 							<form class="form-horizontal" role="form">
 								<div class="form-group">
@@ -136,8 +137,17 @@ window.onload=function(){
 			console.log(questions);
 			console.log(questions[0].question);
 			for(var i=0;i<questions.length;i++)
-				{con+=questions[i].question+"<br/>";
-					con+=questions[i].answer+"<br/>";}
+				{con+=`<div class="chat">
+				<div class="user-photo">
+					
+				</div>
+				<p class="chat-message friend">${questions[i].question}</p>
+				</div>
+				<div class="chat">
+				<div class="user-photo">
+					
+				</div><p class="chat-message self">${questions[i].answer}</p>
+				</div>`;}
 			document.getElementById("cont").innerHTML=con;
 		}
 		else
