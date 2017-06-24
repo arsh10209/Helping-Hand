@@ -128,13 +128,8 @@ window.onload=function(){
 			
 			var questions = JSON.parse(this.responseText);
 			console.log(questions);
-			console.log(questions[2].question);
-			var con="arvind";
-			for(var i=0;i<questions.length;i++){
-				
-			con+=`<p>${questions[i].question}</p><input type=button value=replies onclick=readAnswer(${questions[i].id})>&nbsp<input type=button value=reply onclick=SubmitAnswer(${questions[i].id})>`;
-
-		}
+			console.log(questions[0].question);
+			
 			document.getElementById("content").innerHTML=con;
 		}
 		else
