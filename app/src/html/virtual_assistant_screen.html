@@ -96,9 +96,10 @@ window.onload=function()
 	{
 		if(request_obj1.readyState===XMLHttpRequest.DONE&&request_obj1.status===200)
 		{
-			var questions=JSON.parse(this.responseText);
-			console.log(questions[0].question);
-			document.getElementById("content").innerHTML=questions[0].question;
+			//var questions=JSON.parse(this.responseText);
+			//console.log(questions[0].question);
+			//document.getElementById("content").innerHTML=questions[0].question;
+			console.log(usern);
 		}
 		else
 		{
