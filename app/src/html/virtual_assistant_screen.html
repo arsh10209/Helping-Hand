@@ -91,8 +91,8 @@ document.getElementById("logout_btn").value="Please wait..";
 window.onload=function()
 {	var usern=parseInt(document.cookie);
 	console.log(usern);
-	var request_obj1=new XMLHttpRequest();
-	request_obj1.onreadystatechange=function()
+	var request_obj=new XMLHttpRequest();
+	request_obj.onreadystatechange=function()
 	{
 		if(request_obj1.readyState===XMLHttpRequest.DONE&&request_obj1.status===200)
 		{
@@ -107,10 +107,10 @@ window.onload=function()
 			document.getElementById("content").innerHTML="error";
 		}
 		//var usern=getcookie_user_id();
-		request_obj1.open('POST',"http://data.vcap.me/v1/query",true);
-		//request_obj1.withCredentials=true;
-		request_obj1.setRequestHeader('Content-type','application/json');
-		request_obj1.send(JSON.stringify({type:"select",args:{table:"pqueans",columns:["*"],where:{user_id:usern}}}));
+		request_obj.open('POST',"http://data.vcap.me/v1/query",true);
+		request_obj.withCredentials=true;
+		request_obj.setRequestHeader('Content-type','application/json');
+		request_obj.send(JSON.stringify({type:"select",args:{table:"pqueans",columns:["*"]}}));
 	};
 };
 
