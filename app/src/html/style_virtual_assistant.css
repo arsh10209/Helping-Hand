@@ -24,7 +24,7 @@ body{
 	background:#2C3E50;
 	color:white;
 }
-.content{
+.cont{
 	width:560px;
 	height:400px;
 	background:white;
@@ -37,6 +37,7 @@ body{
 	background:#ff00ff;
 	border-radius:10px;
 	font-size:18px;
+	height:auto;
 }
 .friend {
 	background:#18BC9C;
