@@ -148,7 +148,7 @@ window.onload=function(){
 	request1.open('POST',"http://data.vcap.me/v1/query",true);
 	request1.withCredentials=true;
 	request1.setRequestHeader('Content-type','application/json');
-	request1.send(JSON.stringify({type:"select",args:{table:"pqueans",columns:["*"]}}));
+	request1.send(JSON.stringify({type:"select",args:{table:"pqueans",columns:["*"],where:{user_id:2}}}));
 };
 </script>
 
