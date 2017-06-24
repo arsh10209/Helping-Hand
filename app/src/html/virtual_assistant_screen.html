@@ -136,8 +136,8 @@ window.onload=function(){
 			console.log(questions);
 			console.log(questions[0].question);
 			for(var i=0;i<questions.length;i++)
-				{con+=questions[i].question;
-					con+=questions[i].answer;}
+				{con+=questions[i].question+"<br/>";
+					con+=questions[i].answer+"<br/>";}
 			document.getElementById("cont").innerHTML=con;
 		}
 		else
