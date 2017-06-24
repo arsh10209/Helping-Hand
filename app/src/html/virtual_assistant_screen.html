@@ -68,13 +68,7 @@ send_btn.onclick=function()
 	document.getElementById("send_btn").value="success";
 };
 </script>
-<script>
-function getcookie_user_id()
-{	var x=document.cookie;
-	var decodedcookie=decodeURIComponent(x);
-	return decodedcookie;
-}
-</script>
+
 <script>
 window.onload=function()
 {
@@ -92,11 +86,11 @@ window.onload=function()
 			console.log("error");
 			document.getElementById("content").innerHTML="error";
 		}
-		var user=getcookie_user_id();
+		var usern=getcookie_user_id();
 		request_obj1.open('POST',"http://data.vcap.me/v1/query",true);
 		request_obj1.withCredentials=true;
 		request_obj1.setRequestHeader('Content-type','application/json');
-		request_obj1.send(JSON.stringify({type:"select",args:{table:"pqueans",columns:["*"],where:{user_id:user}}}));
+		request_obj1.send(JSON.stringify({type:"select",args:{table:"pqueans",columns:["*"],where:{user_id:usern}}}));
 	};
 }
 </script>
@@ -120,6 +114,13 @@ request.send(null);
 document.getElementById("logout_btn").value="Please wait..";
 };
 
+</script>
+<script>
+function getcookie_user_id()
+{	var x=document.cookie;
+	var decodedcookie=decodeURIComponent(x);
+	return decodedcookie;
+}
 </script>	
 </body>
 
