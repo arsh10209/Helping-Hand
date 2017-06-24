@@ -31,7 +31,7 @@ body{
 	border:3px;
 }
 .chat-message{
-	width:80%;
+	width:100%;
 	padding:15px;
 	margin:5px 10px 0;
 	background:#ff00ff;
