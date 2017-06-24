@@ -180,7 +180,7 @@ function SubmitAnswer(x1)
 <script>
 window.onload=function(){
 	var allcookies=document.cookie;
-	document.getElementById("info").innerHTML="<h1>Welcome <b>"+allcookies+"</b><h1>";
+	document.getElementById("info").innerHTML="<h1>Welcome</h1>"+allcookies;
 	var request1=new XMLHttpRequest();
 	request1.onreadystatechange=function(){
 		if(request1.readyState===XMLHttpRequest.DONE && request1.status===200)
