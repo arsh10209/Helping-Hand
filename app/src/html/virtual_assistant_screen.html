@@ -43,7 +43,7 @@
 			</div>
 	</div>
 
-<script>
+<!--<script>
 var send_btn=document.getElementById("send_btn");
 send_btn.onclick=function()
 {
@@ -85,7 +85,7 @@ request.setRequestHeader('Authorization','Bearer');
 request.send(null);
 document.getElementById("logout_btn").value="Please wait..";
 };
-</script>
+</script>-->
 <script>
 
 window.onload=function()
@@ -109,17 +109,17 @@ window.onload=function()
 		request_obj1.withCredentials=true;
 		request_obj1.setRequestHeader('Content-type','application/json');
 		request_obj1.send(JSON.stringify({type:"select",args:{table:"pqueans",columns:["*"],where:{user_id:usern}}}));
-	}
+	};
 };
 
 
 
 
-function getcookie_user_id()
+/*function getcookie_user_id()
 {	var x=document.cookie;
 	var decodedcookie=decodeURIComponent(x);
 	return decodedcookie;
-}
+}*/
 </script>
 
 </body>
