@@ -124,7 +124,7 @@ function getcookie_user_id()
 };*/
 
 window.onload=function(){
-	//var allcookies=document.cookie;
+	var allcookies=document.cookie;
 	//document.getElementById("info").innerHTML="<h1>Welcome</h1>"+allcookies;
 	var con="";
 	var request1=new XMLHttpRequest();
@@ -145,10 +145,12 @@ window.onload=function(){
 			document.getElementById("cont").innerHTML="could not questions";
 		}
 	};
+	var user_Id1= getcookie_user_id();
+	console.log(user_Id1);
 	request1.open('POST',"http://data.vcap.me/v1/query",true);
 	request1.withCredentials=true;
 	request1.setRequestHeader('Content-type','application/json');
-	request1.send(JSON.stringify({type:"select",args:{table:"pqueans",columns:["*"],where:{user_id:2}}}));
+	request1.send(JSON.stringify({type:"select",args:{table:"pqueans",columns:["*"],where:{user_id:user_Id1}}}));
 };
 </script>
 
