@@ -52,9 +52,11 @@ send_btn.onclick=function()
 	{
 		if(request_object1.readyState===XMLHttpRequest.DONE&&request_object1.status===200)
 		{	var user_input=document.getElementById("user_input").value;
-			//document.getElementById("content").innerHTML="Question"+user_input;}
+			document.getElementById("content").innerHTML="Question"+user_input;
+			alert(user_input);}
 		else
-		{document.getElementById("content").innerHTML="cannot load your question";}
+		{document.getElementById("content").innerHTML="cannot load your question";
+		alert("cannot load your question");}
 	}
 	var user_input=document.getElementById("user_input").value;
 	var send_btn=document.getElementById("send_btn");
