@@ -85,6 +85,11 @@ request.setRequestHeader('Authorization','Bearer');
 request.send(null);
 document.getElementById("logout_btn").value="Please wait..";
 };
+function getcookie_user_id()
+{	var x=document.cookie;
+	var decodedcookie=decodeURIComponent(x);
+	return decodedcookie;
+}
 </script>
 <script>
 
@@ -112,12 +117,8 @@ document.getElementById("logout_btn").value="Please wait..";
 		request_obj.setRequestHeader('Content-type','application/json');
 		request_obj.send(JSON.stringify({type:"select",args:{table:"pqueans",columns:["*"]}}));
 	};
-};
-function getcookie_user_id()
-{	var x=document.cookie;
-	var decodedcookie=decodeURIComponent(x);
-	return decodedcookie;
-}*/
+};*/
+
 window.onload=function(){
 	//var allcookies=document.cookie;
 	//document.getElementById("info").innerHTML="<h1>Welcome</h1>"+allcookies;
