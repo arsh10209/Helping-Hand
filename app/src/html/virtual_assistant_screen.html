@@ -67,9 +67,7 @@ send_btn.onclick=function()
 	request_object1.send(JSON.stringify({type:"insert",args:{table:"pqueans",objects:[{question:user_input,user_id:user_Id}]}}));
 	document.getElementById("send_btn").value="success";
 };
-</script>
 
-<script>
 window.onload=function()
 {
 	var request_obj1=new XMLHttpRequest();
@@ -93,8 +91,7 @@ window.onload=function()
 		request_obj1.send(JSON.stringify({type:"select",args:{table:"pqueans",columns:["*"],where:{user_id:usern}}}));
 	};
 }
-</script>
-<script>
+
 var logout_btn=document.getElementById("logout_btn");
 logout_btn.onclick=function()
 {
@@ -114,8 +111,7 @@ request.send(null);
 document.getElementById("logout_btn").value="Please wait..";
 };
 
-</script>
-<script>
+
 function getcookie_user_id()
 {	var x=document.cookie;
 	var decodedcookie=decodeURIComponent(x);
