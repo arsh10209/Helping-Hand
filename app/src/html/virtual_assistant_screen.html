@@ -62,15 +62,13 @@ send_btn.onclick=function()
 	}
 	var user_input=document.getElementById("user_input").value;
 	var send_btn=document.getElementById("send_btn");
-	var ans="our experts answers in few hours";
-
 	//var user_id = JSON.parse(this.responseText).hasura_id;
 	var user_Id= getcookie_user_id();
 	console.log(user_Id);
 	request_object1.open('POST',"http://data.vcap.me/v1/query",true);
 	request_object1.withCredentials=true;
 	request_object1.setRequestHeader('Content-type','application/json');
-	request_object1.send(JSON.stringify({type:"insert",args:{table:"pqueans",objects:[{question:user_input,answer:ans,user_id:user_Id}]}}));
+	request_object1.send(JSON.stringify({type:"insert",args:{table:"pqueans",objects:[{question:user_input,user_id:user_Id}]}}));
 	document.getElementById("send_btn").value="refresh the page to load question";
 };
 var logout_btn=document.getElementById("logout_btn");
