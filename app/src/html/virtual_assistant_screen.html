@@ -67,31 +67,6 @@ send_btn.onclick=function()
 	request_object1.send(JSON.stringify({type:"insert",args:{table:"pqueans",objects:[{question:user_input,user_id:user_Id}]}}));
 	document.getElementById("send_btn").value="success";
 };
-
-window.onload=function()
-{
-	var request_obj1=new XMLHttpRequest();
-	request_obj1.onreadystatechange=function()
-	{
-		if(request_obj1.readyState===XMLHttpRequest.DONE&&request_obj1.status===200)
-		{
-			var questions=JSON.parse(this.responseText);
-			console.log(questions[0].question);
-			document.getElementById("content").innerHTML=questions[0].question;
-		}
-		else
-		{
-			console.log("error");
-			document.getElementById("content").innerHTML="error";
-		}
-		var usern=parseInt(getcookie_user_id());
-		request_obj1.open('POST',"http://data.vcap.me/v1/query",true);
-		request_obj1.withCredentials=true;
-		request_obj1.setRequestHeader('Content-type','application/json');
-		request_obj1.send(JSON.stringify({type:"select",args:{table:"pqueans",columns:["*"],where:{user_id:usern}}}));
-	}
-};
-
 var logout_btn=document.getElementById("logout_btn");
 logout_btn.onclick=function()
 {
@@ -110,6 +85,34 @@ request.setRequestHeader('Authorization','Bearer');
 request.send(null);
 document.getElementById("logout_btn").value="Please wait..";
 };
+</script>
+<script>
+
+window.onload=function()
+{
+	var request_obj1=new XMLHttpRequest();
+	request_obj1.onreadystatechange=function()
+	{
+		if(request_obj1.readyState===XMLHttpRequest.DONE&&request_obj1.status===200)
+		{
+			var questions=JSON.parse(this.responseText);
+			console.log(questions[0].question);
+			document.getElementById("content").innerHTML=questions[0].question;
+		}
+		else
+		{
+			console.log("error");
+			document.getElementById("content").innerHTML="error";
+		}
+		var usern=getcookie_user_id();
+		request_obj1.open('POST',"http://data.vcap.me/v1/query",true);
+		request_obj1.withCredentials=true;
+		request_obj1.setRequestHeader('Content-type','application/json');
+		request_obj1.send(JSON.stringify({type:"select",args:{table:"pqueans",columns:["*"],where:{user_id:usern}}}));
+	}
+};
+
+
 
 
 function getcookie_user_id()
@@ -117,7 +120,8 @@ function getcookie_user_id()
 	var decodedcookie=decodeURIComponent(x);
 	return decodedcookie;
 }
-</script>	
+</script>
+
 </body>
 
 </html>
