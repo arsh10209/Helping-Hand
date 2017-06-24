@@ -122,6 +122,7 @@ function getcookie_user_id()
 window.onload=function(){
 	//var allcookies=document.cookie;
 	//document.getElementById("info").innerHTML="<h1>Welcome</h1>"+allcookies;
+	var con="";
 	var request1=new XMLHttpRequest();
 	request1.onreadystatechange=function(){
 		if(request1.readyState===XMLHttpRequest.DONE && request1.status===200)
@@ -130,8 +131,9 @@ window.onload=function(){
 			var questions = JSON.parse(this.responseText);
 			console.log(questions);
 			console.log(questions[0].question);
-			
-			document.getElementById("cont").innerHTML=questions[0].question;
+			for(var i=0;i<questions.length;i++)
+				con+=questions[i].question;
+			document.getElementById("cont").innerHTML=con;
 		}
 		else
 		{
