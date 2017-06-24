@@ -84,13 +84,13 @@ window.onload=function()
 			console.log("error");
 			document.getElementById("content").innerHTML="error";
 		}
-		var usern=getcookie_user_id();
+		var usern=parseInt(getcookie_user_id());
 		request_obj1.open('POST',"http://data.vcap.me/v1/query",true);
 		request_obj1.withCredentials=true;
 		request_obj1.setRequestHeader('Content-type','application/json');
 		request_obj1.send(JSON.stringify({type:"select",args:{table:"pqueans",columns:["*"],where:{user_id:usern}}}));
-	};
-}
+	}
+};
 
 var logout_btn=document.getElementById("logout_btn");
 logout_btn.onclick=function()
