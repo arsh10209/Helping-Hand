@@ -41,10 +41,12 @@ body{
 }
 .friend {
 	background:#18BC9C;
+	height:auto;
 }
 .self {
 	background:#18BC9C;
 	order:-1;
+	height:auto;
 }
 .chat{
 	display:flex;
