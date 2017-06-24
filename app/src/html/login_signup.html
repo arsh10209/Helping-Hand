@@ -110,8 +110,9 @@ login_btn.onclick=function()
 	requestobject.onreadystatechange=function()
 	{
 		if(requestobject.readyState===XMLHttpRequest.DONE&&requestobject.status===200)
-		{	var user = JSON.parse(this.responseText).username;
-			document.cookie=user;
+		{	var usern=document.getElementById("username1").value;
+			//var user = JSON.parse(this.responseText).username;
+			document.cookie=usern;
 			
 			document.getElementById("login_btn").value="valid username or password";
 			window.location.href="profile.html";
