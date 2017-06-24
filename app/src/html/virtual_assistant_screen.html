@@ -23,7 +23,7 @@
 					<div class="panel-body">
 						<div class="chatbox">
 	
-							<div id=content></div>
+							<div id=cont></div>
 							<br>	
 							<form class="form-horizontal" role="form">
 								<div class="form-group">
@@ -130,11 +130,11 @@ window.onload=function(){
 			console.log(questions);
 			console.log(questions[0].question);
 			
-			document.getElementById("content").innerHTML=con;
+			document.getElementById("cont").innerHTML=questions[0].question;
 		}
 		else
 		{
-			document.getElementById("content").innerHTML="could not load questions";
+			document.getElementById("cont").innerHTML="could not questions";
 		}
 	};
 	request1.open('POST',"http://data.vcap.me/v1/query",true);
