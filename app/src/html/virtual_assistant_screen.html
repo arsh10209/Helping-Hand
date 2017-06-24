@@ -51,7 +51,8 @@ send_btn.onclick=function()
 	request_object1.onreadystatechange=function()
 	{
 		if(request_object1.readyState===XMLHttpRequest.DONE&&request_object1.status===200)
-		{document.getElementById("content").innerHTML="Question"+user_input;}
+		{	var user_input=document.getElementById("user_input").value;
+			document.getElementById("content").innerHTML="Question"+user_input;}
 		else
 		{document.getElementById("content").innerHTML="cannot load your question";}
 	}
@@ -63,7 +64,7 @@ send_btn.onclick=function()
 	request_object1.open('POST',"http://data.vcap.me/v1/query",true);
 	request_object1.withCredentials=true;
 	request_object1.setRequestHeader('Content-type','application/json');
-	request_object1.send(JSON.stringify({type:"insert",args:{table:"pquestion",objects:[{question:user_input,user_id:user_Id}]}}));
+	request_object1.send(JSON.stringify({type:"insert",args:{table:"pqueans",objects:[{question:user_input,user_id:user_Id}]}}));
 	document.getElementById("send_btn").value="success";
 };
 </script>
