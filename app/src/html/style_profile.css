@@ -54,4 +54,7 @@ body{
 #content{
 	width:500px;
 }
-
+#logout_btn{
+	background: #2C3E50;
+	color:white;
+}
