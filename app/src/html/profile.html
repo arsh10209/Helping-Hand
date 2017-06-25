@@ -137,11 +137,11 @@ function readAnswer(x)
 			}
 			document.getElementById("answer_content").innerHTML=ans;
 			submit_answer.onclick=function()
-			{	console.log(x);
-				var request_object3=new XMLHttpRequest();
-				request_object3.onreadystatechange=function()
-				{
-					if(request_object3.readyState===XMLHttpRequest.DONE&&request_object3.status===200)
+			{	
+				var request3=new XMLHttpRequest();
+				request3.onreadystatechange=function()
+				{	console.log(x);
+					if(request3.readyState===XMLHttpRequest.DONE&&request3.status===200)
 					{
 								//document.getElementById("answer_content").innerHTML="refresh the page to see results";
 								console.log("success");
@@ -152,10 +152,10 @@ function readAnswer(x)
 								console.log("unsuccessfull");
 					}
 					var answer_text=document.getElementById("answer_text").value;
-					request_object3.open('POST',"http://data.vcap.me/v1/query",true);
-					request_object3.withCredentials=true;
-					request_object3.sendRequestHeader('Content-type','application/json');
-					request_object3.send(JSON.stringify({type:"insert",args:{table:"answer",objects:[{answer:answer_text,question_id:x}]}}));
+					request3.open('POST',"http://data.vcap.me/v1/query",true);
+					request3.withCredentials=true;
+					request3.sendRequestHeader('Content-type','application/json');
+					request3.send(JSON.stringify({type:"insert",args:{table:"answer",objects:[{answer:answer_text,question_id:x}]}}));
 					console.log(this.responseText);
 					document.getElementById("submit_answer").value="Please Wait";
 				}
