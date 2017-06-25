@@ -143,11 +143,24 @@ window.onload=function(){
 				</div>
 				<p class="chat-message friend"><span id='display'>${questions[i].question}</span></p>
 				</div>
-				<div class="chat">
+				`;
+				if(questions[i].answer===NULL)
+				{
+					con+=`<div class="chat">
+				<div class="user-photo">
+					
+				</div><p class="chat-message self">Our experts answers in few hours</p>
+				</div>`;
+				}
+				else
+				{
+					con+=`<div class="chat">
 				<div class="user-photo">
 					
 				</div><p class="chat-message self">${questions[i].answer}</p>
-				</div>`;}
+				</div>`;
+				}
+			}
 			document.getElementById("cont").innerHTML=con;
 		}
 		else

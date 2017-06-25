@@ -51,4 +51,7 @@ body{
 	overflow-y:scroll;
 	
 }
+#content{
+	width:500px;
+}
 
