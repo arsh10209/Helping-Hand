@@ -138,27 +138,25 @@ function readAnswer(x)
 			document.getElementById("answer_content").innerHTML=ans;
 			submit_answer.onclick=function()
 			{	
-				var request3=new XMLHttpRequest();
-				request3.onreadystatechange=function()
-				{	console.log(x);
-					if(request3.readyState===XMLHttpRequest.DONE&&request3.status===200)
-					{
-								//document.getElementById("answer_content").innerHTML="refresh the page to see results";
-								console.log("success");
-					}
-					else
-					{
-								//document.getElementById("answer_content").innerHTML="sorry try again";
-								console.log("unsuccessfull");
-					}
-					var answer_text=document.getElementById("answer_text").value;
-					request3.open('POST',"http://data.vcap.me/v1/query",true);
-					request3.withCredentials=true;
-					request3.sendRequestHeader('Content-type','application/json');
-					request3.send(JSON.stringify({type:"insert",args:{table:"answer",objects:[{answer:answer_text,question_id:x}]}}));
-					console.log(this.responseText);
-					document.getElementById("submit_answer").value="Please Wait";
-				}
+				var request_ob1=new XMLHttpRequest();
+	request_ob1.onreadystatechange=function()
+	{
+		if(request_ob1.readyState===XMLHttpRequest.DONE&&request_ob1.status===200)
+		{	
+			console.log("success");
+		}
+		else
+		{
+			console.log("unsuccessful");
+		}
+	}
+	var answer_text=document.getElementById("answer_text").value;
+	
+	request_ob1.open('POST',"http://data.vcap.me/v1/query",true);
+	request_ob1.withCredentials=true;
+	request_ob1.setRequestHeader('Content-type','application/json');
+	request_ob1.send(JSON.stringify({type:"insert",args:{table:"answer",objects:[{answer:answer_text}]}}));
+	document.getElementById("submit_answer").value="success";
 			};
 		}
 		else
