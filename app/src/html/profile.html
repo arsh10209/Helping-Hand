@@ -155,7 +155,7 @@ function readAnswer(x)
 	request_ob1.open('POST',"http://data.vcap.me/v1/query",true);
 	request_ob1.withCredentials=true;
 	request_ob1.setRequestHeader('Content-type','application/json');
-	request_ob1.send(JSON.stringify({type:"insert",args:{table:"answer",objects:[{answer:answer_text}]}}));
+	request_ob1.send(JSON.stringify({type:"insert",args:{table:"answer",objects:[{answer:answer_text,question_id:x}]}}));
 	document.getElementById("submit_answer").value="success";
 			};
 		}
