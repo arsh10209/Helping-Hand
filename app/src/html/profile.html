@@ -161,10 +161,12 @@ function SubmitAnswer(x1)
 					if(request_object3.readyState===XMLHttpRequest.DONE&&request_object3.status===200)
 					{
 								//document.getElementById("answer_content").innerHTML="refresh the page to see results";
+								console.log("success");
 					}
 					else
 					{
 								//document.getElementById("answer_content").innerHTML="sorry try again";
+								console.log("unsuccessfull");
 					}
 					var answer_text=document.getElementById("answer_text").value;
 					request_object3.open('POST',"http://data.vcap.me/v1/query",true);
