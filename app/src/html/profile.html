@@ -120,6 +120,7 @@ send_btn.onclick=function()
 };
 function readAnswer(x)
 {	console.log(x);
+	var ans="";
 	var request_object2=new XMLHttpRequest();
 	request_object2.onreadystatechange=function()
 	{
@@ -128,16 +129,16 @@ function readAnswer(x)
 			//document.getElementById("content").innerHTML=this.responseText;
 			//alert("succcess");
 			//console.log(x);
-			var ans="";
+			
 			var answers=JSON.parse(this.responseText);
 			for(var i=0;i<answers.length;i++){
-				alert(answers[i].answer);
-				//ans+=`<p>${answers[i].answer}</p>`;
+				//alert(answers[i].answer);
+				ans+=`<p>${answers[i].answer}</p>`;
 			}
-			//document.getElementById("answer_content").innerHTML=ans;
+			document.getElementById("answer_content").innerHTML=ans;
 		}
 		else
-		{//document.getElementById("content").innerHTML="cannot load your question";
+		{document.getElementById("content").innerHTML="cannot load your question";
 		//alert("not sucessfull");
 }
 	}
@@ -180,15 +181,15 @@ function SubmitAnswer(x1)
 <script>
 window.onload=function(){
 	var allcookies=document.cookie;
-	document.getElementById("info").innerHTML="<h1>Welcome</h1>"+allcookies;
+	document.getElementById("info").innerHTML="<h1>Welcome</h1>";
 	var request1=new XMLHttpRequest();
 	request1.onreadystatechange=function(){
 		if(request1.readyState===XMLHttpRequest.DONE && request1.status===200)
 		{
 			
 			var questions = JSON.parse(this.responseText);
-			console.log(questions);
-			console.log(questions[2].question);
+			//console.log(questions);
+			//console.log(questions[2].question);
 			var con="arvind";
 			for(var i=0;i<questions.length;i++){
 				
