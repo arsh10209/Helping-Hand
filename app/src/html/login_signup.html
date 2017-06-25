@@ -95,7 +95,7 @@ var signup_btn = document.getElementById("signup_btn");
 	var email=document.getElementById("email").value;
 	var password= document.getElementById("password").value;
 	var signup=document.getElementById("signup_btn");
-	request.open('POST', "http://auth.vcap.me/signup", true);
+	request.open('POST', "http://auth.helpinghand.hasura.me/signup", true);
 	request.setRequestHeader('Content-type','application/json');
 	request.send(JSON.stringify({username:username,email:email,password:password}));
 	signup_btn.value="Please wait...";
