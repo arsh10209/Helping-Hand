@@ -75,3 +75,7 @@ body{
 	background:#2C3E50;
 	border-radius:50%;
 }
+#logout_btn{
+	background: #2C3E50;
+	color:white;
+}
