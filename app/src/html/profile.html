@@ -194,7 +194,7 @@ window.onload=function(){
 			var con="arvind";
 			for(var i=0;i<questions.length;i++){
 				
-			con+=`<p>${questions[i].question}</p><input type=button value=replies onclick=readAnswer(${questions[i].id})>&nbsp<input type=button value=reply onclick=SubmitAnswer(${questions[i].id})>`;
+			con+=`<p>${questions[i].question}</p><input type=button value=replies onclick=readAnswer(${questions[i].id})>`;
 
 		}
 			document.getElementById("content").innerHTML=con;
