@@ -133,36 +133,35 @@ function readAnswer(x)
 			var answers=JSON.parse(this.responseText);
 			for(var i=0;i<answers.length;i++){
 				//alert(answers[i].answer);
-				ans+=`<p>${answers[i].answer}</p>`;
+				ans+=`<p>Answer ${i}.${answers[i].answer}</p>`;
 			}
 			document.getElementById("answer_content").innerHTML=ans;
 			submit_answer.onclick=function()
 			{	
 				var request_ob1=new XMLHttpRequest();
-	request_ob1.onreadystatechange=function()
-	{
-		if(request_ob1.readyState===XMLHttpRequest.DONE&&request_ob1.status===200)
-		{	
-			console.log("success");
-		}
-		else
-		{
-			console.log("unsuccessful");
-		}
-	}
-	var answer_text=document.getElementById("answer_text").value;
-	
-	request_ob1.open('POST',"http://data.vcap.me/v1/query",true);
-	request_ob1.withCredentials=true;
-	request_ob1.setRequestHeader('Content-type','application/json');
-	request_ob1.send(JSON.stringify({type:"insert",args:{table:"answer",objects:[{answer:answer_text,question_id:x}]}}));
-	document.getElementById("submit_answer").value="success";
+				request_ob1.onreadystatechange=function()
+				{
+					if(request_ob1.readyState===XMLHttpRequest.DONE&&request_ob1.status===200)
+					{	
+						console.log("success");
+					}
+					else
+					{
+						console.log("unsuccessful");
+					}
+				}			
+				var answer_text=document.getElementById("answer_text").value;
+				request_ob1.open('POST',"http://data.vcap.me/v1/query",true);
+				request_ob1.withCredentials=true;
+				request_ob1.setRequestHeader('Content-type','application/json');
+				request_ob1.send(JSON.stringify({type:"insert",args:{table:"answer",objects:[{answer:answer_text,question_id:x}]}}));
+				document.getElementById("submit_answer").value="success";
 			};
 		}
 		else
-		{document.getElementById("content").innerHTML="cannot load your question";
+		{		document.getElementById("content").innerHTML="cannot load your question";
 		//alert("not sucessfull");
-}
+		}
 	}
 	request_object2.open('POST',"http://data.vcap.me/v1/query",true);
 	request_object2.withCredentials=true;
@@ -171,13 +170,6 @@ function readAnswer(x)
 	document.getElementById("btnAddAddress").value="success";
 
 }
-/*function SubmitAnswer(x1)
-{	
-	var submit_answer=document.getElementById("submit_answer");
-	console.log(x1);
-			
-}*/
-
 </script>
 <script>
 window.onload=function(){
