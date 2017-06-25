@@ -196,7 +196,7 @@ window.onload=function(){
 			document.getElementById("content").innerHTML="could not load questions";
 		}
 	};
-	request1.open('POST',"http://data.vcap.me/v1/query",true);
+	request1.open('POST',"http://data.helpinghand.hasura.me/v1/query",true);
 	request1.withCredentials=true;
 	request1.setRequestHeader('Content-type','application/json');
 	request1.send(JSON.stringify({type:"select",args:{table:"question",columns:["*"]}}));
