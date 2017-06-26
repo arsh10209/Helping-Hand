@@ -211,7 +211,7 @@
 	var email=document.getElementById("email").value;
 	var message= document.getElementById("message").value;
 	var send_btn=document.getElementById("send_btn");
-	request.open('POST', "http://data.helpinghand.hasura.me/v1/query", true);
+	request.open('POST', "http://data.vcap.me/v1/query", true);
 	request.setRequestHeader('Content-type','application/json');
 	request.send(JSON.stringify({type:"insert",args:{table:"feedback",objects:[{name:name,email:email,message:message}]}}));
 	send_btn.value="Please wait...";
@@ -279,7 +279,7 @@ window.onload=function(){
 
 		}
 	};
-	requestobj.open('POST',"http://data.helpinghand.hasura.me/v1/query",true);
+	requestobj.open('POST',"http://data.vcap.me/v1/query",true);
 	//requestobj.withCredentials=true;
 	requestobj.setRequestHeader('Content-type','application/json');
 	requestobj.send(JSON.stringify({type:"select",args:{table:"category",columns:["*"]}}));
@@ -312,7 +312,7 @@ function GetSelectedTextValue(categorybox) {
 
         	}
         }
-        requestobj1.open('POST',"http://data.helpinghand.hasura.me/v1/query",true);
+        requestobj1.open('POST',"http://data.vcap.me/v1/query",true);
         requestobj1.setRequestHeader('Content-type','application/json');
         requestobj1.send(JSON.stringify({type:"select",args:{table:"colleges",columns:["*"],where:{category:selectedValue}}}));
        
@@ -338,7 +338,7 @@ function readcollegedetails(detail)
 
 		}
 	}
-	requestobj2.open('POST',"http://data.helpinghand.hasura.me/v1/query",true);
+	requestobj2.open('POST',"http://data.vcap.me/v1/query",true);
 	requestobj2.setRequestHeader('Content-type','application/json');
 	requestobj2.send(JSON.stringify({type:"select",args:{table:"collegedetail",columns:["*"],where:{college_id:selectedcollegevalue}}}));
 }
@@ -369,7 +369,7 @@ function GetSelectedcourse(categoryboxexam)
 
         	}
         }
-        requestobj4.open('POST',"http://data.helpinghand.hasura.me/v1/query",true);
+        requestobj4.open('POST',"http://data.vcap.me/v1/query",true);
         requestobj4.setRequestHeader('Content-type','application/json');
         requestobj4.send(JSON.stringify({type:"select",args:{table:"exams",columns:["*"],where:{category:selectedexam}}}));
 }
@@ -395,7 +395,7 @@ function readexamdetails(detailexam)
 
 		}
 	}
-	requestobj5.open('POST',"http://data.helpinghand.hasura.me/v1/query",true);
+	requestobj5.open('POST',"http://data.vcap.me/v1/query",true);
 	requestobj5.setRequestHeader('Content-type','application/json');
 	requestobj5.send(JSON.stringify({type:"select",args:{table:"examdetail",columns:["*"],where:{exam_id:selectedexamvalue}}}));
 }
