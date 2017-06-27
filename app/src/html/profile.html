@@ -122,8 +122,9 @@ send_btn.onclick=function()
 	request_object1.send(JSON.stringify({type:"insert",args:{table:"question",objects:[{question:user_input}]}}));
 	document.getElementById("btnAddAddress").value="success";
 };
-function readAnswer(x)
+function readAnswer(x,y)
 {	console.log(x);
+	console.log(y);
 	var ans="";
 	var request_object2=new XMLHttpRequest();
 	request_object2.onreadystatechange=function()
@@ -190,7 +191,7 @@ window.onload=function(){
 			var con="";
 			for(var i=0;i<questions.length;i++){
 				
-			con+=`<p>Q${i+1}.${questions[i].question}</p><input type=button value=replies onclick=readAnswer(${questions[i].id})>`;
+			con+=`<p>Q${i+1}.${questions[i].question}</p><input type=button value=replies onclick=readAnswer(${questions[i].id},${questions[i].question})>`;
 
 		}
 			document.getElementById("content").innerHTML=con;
