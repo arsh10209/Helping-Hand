@@ -168,7 +168,7 @@ function readAnswer(x)
 			var answers=JSON.parse(this.responseText);
 			for(var i=0;i<answers.length;i++){
 				//alert(answers[i].answer);
-				ans+=`<p>Answer ${i+1}.${answers[i].answer}</p>`;
+				ans+=`<p>Answer ${answers[i].question_id}.${i+1}: ${answers[i].answer}</p>`;
 			}
 			document.getElementById("answer_content").innerHTML=ans;
 			submit_answer.onclick=function()
