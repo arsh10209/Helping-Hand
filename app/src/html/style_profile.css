@@ -46,11 +46,7 @@ body{
 {
 	background:#2C3E50;
 }
-.container .panel-body{
-	overflow-x:hidden;
-	overflow-y:scroll;
-	
-}
+
 #content{
 	width:500px;
 }
