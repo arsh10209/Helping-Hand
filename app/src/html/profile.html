@@ -171,7 +171,7 @@ function readAnswer(x)
 	request_object2.withCredentials=true;
 	request_object2.setRequestHeader('Content-type','application/json');
 	var string1=request_object2.send(JSON.stringify({type:"select",args:{table:"answer",columns:["*"],where:{question_id:x}}}));
-	document.getElementById("btnAddAddress").value="success";
+	
 
 }
 </script>
