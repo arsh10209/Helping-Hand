@@ -103,7 +103,8 @@ send_btn.onclick=function()
 		if(request_object1.readyState===XMLHttpRequest.DONE&&request_object1.status===200)
 		{	
 			//document.getElementById("content").innerHTML='<input type=button onclick="readAnswer(\''+JSON.parse(this.responseText).id+\') value=\'+user_input+\''>';
-			console.log(JSON.parse(this.responseText).id);
+			var temp=JSON.parse(this.responseText);
+			console.log(temp);
 			//document.getElementById("content").innerHTML='<input type="button" onClick="readAnswer(' + JSON.parse(this.responseText).id+ ')" value='+user_input+'/>';
 		}
 		else
