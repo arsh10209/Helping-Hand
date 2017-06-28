@@ -66,7 +66,7 @@ send_btn.onclick=function()
 	//var user_id = JSON.parse(this.responseText).hasura_id;
 	var user_Id= getcookie_user_id();
 	console.log(user_Id);
-	request_object1.open('POST',"http://data.vcap.me/v1/query",true);
+	request_object1.open('POST',"http://data.helpinghand.hasura.me/v1/query",true);
 	request_object1.withCredentials=true;
 	request_object1.setRequestHeader('Content-type','application/json');
 	request_object1.send(JSON.stringify({type:"insert",args:{table:"pqueans",objects:[{question:user_input,user_id:user_Id}]}}));
@@ -84,7 +84,7 @@ request.onreadystatechange=function()
 	else
 	{document.getElementById("logout_btn").value="OOPs something went wrong";}
 }
-request.open('POST',"http://auth.vcap.me/user/logout",true);
+request.open('POST',"http://auth.helpinghand.hasura.me/user/logout",true);
 request.withCredentials=true;
 request.setRequestHeader('Authorization','Bearer');
 request.send(null);
@@ -170,7 +170,7 @@ window.onload=function(){
 	};
 	var user_Id1= getcookie_user_id();
 	console.log(user_Id1);
-	request1.open('POST',"http://data.vcap.me/v1/query",true);
+	request1.open('POST',"http://data.helpinghand.hasura.me/v1/query",true);
 	request1.withCredentials=true;
 	request1.setRequestHeader('Content-type','application/json');
 	request1.send(JSON.stringify({type:"select",args:{table:"pqueans",columns:["*"],where:{user_id:user_Id1}}}));

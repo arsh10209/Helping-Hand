@@ -81,7 +81,7 @@ request.onreadystatechange=function()
 	else
 	{document.getElementById("logout_btn").value="OOPs something went wrong";}
 }
-request.open('POST',"http://auth.vcap.me/user/logout",true);
+request.open('POST',"http://auth.helpinghand.hasura.me/user/logout",true);
 request.withCredentials=true;
 request.setRequestHeader('Authorization','Bearer');
 request.send(null);
@@ -119,7 +119,7 @@ window.onload=function(){
 			document.getElementById("content").innerHTML="Refresh the page";
 		}
 	};
-	request1.open('POST',"http://data.vcap.me/v1/query",true);
+	request1.open('POST',"http://data.helpinghand.hasura.me/v1/query",true);
 	request1.withCredentials=true;
 	request1.setRequestHeader('Content-type','application/json');
 	request1.send(JSON.stringify({type:"select",args:{table:"question",columns:["*"]}}));
@@ -146,7 +146,7 @@ send_btn.onclick=function()
 	var user_input=document.getElementById("user_input").value;
 	var send_btn=document.getElementById("btnAddAddress");
 	//var allcookies=document.cookie;
-	request_object1.open('POST',"http://data.vcap.me/v1/query",true);
+	request_object1.open('POST',"http://data.helpinghand.hasura.me/v1/query",true);
 	request_object1.withCredentials=true;
 	request_object1.setRequestHeader('Content-type','application/json');
 	request_object1.send(JSON.stringify({type:"insert",args:{table:"question",objects:[{question:user_input}]}}));
@@ -186,7 +186,7 @@ function readAnswer(x)
 					}
 				}			
 				var answer_text=document.getElementById("answer_text").value;
-				request_ob1.open('POST',"http://data.vcap.me/v1/query",true);
+				request_ob1.open('POST',"http://data.helpinghand.hasura.me/v1/query",true);
 				request_ob1.withCredentials=true;
 				request_ob1.setRequestHeader('Content-type','application/json');
 				request_ob1.send(JSON.stringify({type:"insert",args:{table:"answer",objects:[{answer:answer_text,question_id:x}]}}));
@@ -198,7 +198,7 @@ function readAnswer(x)
 		//alert("not sucessfull");
 		}
 	}
-	request_object2.open('POST',"http://data.vcap.me/v1/query",true);
+	request_object2.open('POST',"http://data.helpinghand.hasura.me/v1/query",true);
 	request_object2.withCredentials=true;
 	request_object2.setRequestHeader('Content-type','application/json');
 	var string1=request_object2.send(JSON.stringify({type:"select",args:{table:"answer",columns:["*"],where:{question_id:x}}}));
