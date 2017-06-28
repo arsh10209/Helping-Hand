@@ -132,7 +132,7 @@ window.onload=function(){
 	request1.onreadystatechange=function(){
 		if(request1.readyState===XMLHttpRequest.DONE && request1.status===200)
 		{
-			
+			alert("refresh the page");
 			var questions = JSON.parse(this.responseText);
 			console.log(questions);
 			console.log(questions[0].question);
