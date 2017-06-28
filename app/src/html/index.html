@@ -330,7 +330,7 @@ function readcollegedetails(detail)
 		{
 			var col=JSON.parse(this.responseText);
 			console.log(col[0].name+col[0].description+col[0].address+col[0].courses+col[0].info);
-			det+=`<h3>${col[0].name}</h3><p>${col[0].description}</p><p>Location: ${col[0].address}</p><a href="${col[0].courses}">courses offered</a><br/><a href="${col[0].info}">for more information</a>`
+			det+=`<h3>${col[0].name}</h3><p>${col[0].description}</p><p>Location: ${col[0].address}</p><a href="${col[0].courses}">Click here for courses offered</a><br/><a href="${col[0].info}">Click here for more information</a>`
 			document.getElementById("collegedetails").innerHTML=det;
 		}
 		else
