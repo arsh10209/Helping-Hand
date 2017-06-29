@@ -84,6 +84,13 @@ var signup_btn = document.getElementById("signup_btn");
     {
 	  if(request.readyState===XMLHttpRequest.DONE && request.status===200) 
 		  {  
+		  	var username= document.getElementById("username");
+	var email=document.getElementById("email");
+	var password= document.getElementById("password");
+	username.value="";
+	email.value="";
+	password.value="";
+
 		  document.getElementById("signup_btn").value= "Sign up success";
 			}
 		else 
