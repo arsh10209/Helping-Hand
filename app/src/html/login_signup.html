@@ -121,9 +121,9 @@ login_btn.onclick=function()
 		{	
 			var user_id = JSON.parse(this.responseText).hasura_id;
 			document.cookie=user_id;
-			
+			var username1= document.getElementById("username1").value;
 			document.getElementById("login_btn").value="valid username or password";
-			window.location.href="profile.html";
+			window.location.href="profile.html?username="+username1;
 		}
 		else
 		{	
