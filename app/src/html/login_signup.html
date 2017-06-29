@@ -92,9 +92,7 @@ var signup_btn = document.getElementById("signup_btn");
 			password.value="";
 
 		  document.getElementById("signup_btn").value= "Sign up success";
-		  var user_id = JSON.parse(this.responseText).hasura_id;
-			document.cookie=user_id;
-			window.location.href="profile.html";
+		  
 			}
 		else 
 			{ document.getElementById("signup_btn").value= "Oops ! somthing went wrong";}
