@@ -98,7 +98,7 @@ window.onload=function(){
 	request1.send(JSON.stringify({type:"select",args:{table:"pqueans",columns:["*"],where:{user_id:user_Id1}}}));
 };
 var send_btn=document.getElementById("send_btn");
-var user_input=document.getElementById("user_input").value;
+var user_input=document.getElementById("user_input");
 send_btn.onclick=function()
 {
 	var request_object1=new XMLHttpRequest();
@@ -113,7 +113,7 @@ send_btn.onclick=function()
 				<div class="user-photo">
 					
 				</div>
-				<p class="chat-message friend"><span id='display'>`+user_input+`</span></p>
+				<p class="chat-message friend"><span id='display'>`+user_input.value+`</span></p>
 				</div>
 				`;
 					con+=`<div class="chat">
@@ -123,6 +123,7 @@ send_btn.onclick=function()
 				</div>`;
 				
 				document.getElementById("cont").innerHTML=con;
+				user_input.value="";
 		}
 		else
 		{//document.getElementById("content").innerHTML="cannot load your question";
