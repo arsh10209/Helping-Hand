@@ -96,7 +96,7 @@ document.getElementById("logout_btn").value="Please wait.."
 </script>
 <script>
 var con="";
-window.onload=function(){
+var wload=window.onload=function(){
 	var allcookies=document.cookie;
 	document.getElementById("info").innerHTML="";
 	var request1=new XMLHttpRequest();
@@ -149,6 +149,7 @@ send_btn.onclick=function()
 		if(request_object1.readyState===XMLHttpRequest.DONE&&request_object1.status===200)
 		{	
 			//document.getElementById("content").innerHTML='<input type=button onclick="readAnswer(\''+JSON.parse(this.responseText).id+\') value=\'+user_input+\''>';
+			wload();
 			var temp=JSON.parse(this.responseText);
 			console.log(temp);
 			document.getElementById("content").innerHTML="refresh the page";
