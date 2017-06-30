@@ -173,7 +173,7 @@ send_btn.onclick=function()
 	request_object1.send(JSON.stringify({type:"insert",args:{table:"question",objects:[{question:user_input}]}}));
 	document.getElementById("btnAddAddress").value="success";
 };
-var re=function readAnswer(x)
+function readAnswer(x)
 {	console.log(x);
 	
 	var ans="";
@@ -202,7 +202,7 @@ var re=function readAnswer(x)
 					if(request_ob1.readyState===XMLHttpRequest.DONE&&request_ob1.status===200)
 					{	con="";
 						wload();
-						re(x);
+						readAnswer(x);
 						console.log("success");
 					}
 					else
