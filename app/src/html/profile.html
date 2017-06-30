@@ -100,11 +100,11 @@ var wload=window.onload=function(){
 	var allcookies=document.cookie;
 	document.getElementById("info").innerHTML="";
 	var request1=new XMLHttpRequest();
-	
+
 	request1.onreadystatechange=function(){
 		if(request1.readyState===XMLHttpRequest.DONE && request1.status===200)
 		{
-			
+			document.getElementById("content").innerHTML="";
 			var questions = JSON.parse(this.responseText);
 			//console.log(questions);
 			//console.log(questions[2].question);
@@ -179,7 +179,8 @@ function readAnswer(x)
 	{
 		if(request_object2.readyState===XMLHttpRequest.DONE&&request_object2.status===200)
 		{	//alert(this.responseText.length);
-			//document.getElementById("content").innerHTML=con;
+			document.getElementById("content").innerHTML="";
+			document.getElementById("content").innerHTML=con;
 			//alert("succcess");
 			//console.log(x);
 			
