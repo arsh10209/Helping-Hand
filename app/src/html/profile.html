@@ -104,7 +104,7 @@ var wload=window.onload=function(){
 	request1.onreadystatechange=function(){
 		if(request1.readyState===XMLHttpRequest.DONE && request1.status===200)
 		{
-			document.getElementById("content").innerHTML="";
+			
 			var questions = JSON.parse(this.responseText);
 			//console.log(questions);
 			//console.log(questions[2].question);
@@ -150,6 +150,7 @@ send_btn.onclick=function()
 		if(request_object1.readyState===XMLHttpRequest.DONE&&request_object1.status===200)
 		{	
 			//document.getElementById("content").innerHTML='<input type=button onclick="readAnswer(\''+JSON.parse(this.responseText).id+\') value=\'+user_input+\''>';
+			document.getElementById("content").innerHTML=" ";
 			wload();
 			var temp=JSON.parse(this.responseText);
 			console.log(temp);
