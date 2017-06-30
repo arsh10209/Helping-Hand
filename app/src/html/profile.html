@@ -151,7 +151,7 @@ send_btn.onclick=function()
 		if(request_object1.readyState===XMLHttpRequest.DONE&&request_object1.status===200)
 		{	
 			//document.getElementById("content").innerHTML='<input type=button onclick="readAnswer(\''+JSON.parse(this.responseText).id+\') value=\'+user_input+\''>';
-
+			document.getElementById("content").innerHTML=" ";
 			wload();
 			var temp=JSON.parse(this.responseText);
 			console.log(temp);
@@ -181,11 +181,11 @@ function readAnswer(x)
 	{
 		if(request_object2.readyState===XMLHttpRequest.DONE&&request_object2.status===200)
 		{	//alert(this.responseText.length);
-			document.getElementById("content").innerHTML="";
-			document.getElementById("content").innerHTML=con;
+			//document.getElementById("content").innerHTML="";
+			//document.getElementById("content").innerHTML=con;
 			//alert("succcess");
 			//console.log(x);
-			
+			wload();
 			var answers=JSON.parse(this.responseText);
 			for(var i=0;i<answers.length;i++){
 				//alert(answers[i].answer);
