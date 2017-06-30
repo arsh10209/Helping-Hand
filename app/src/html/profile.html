@@ -200,7 +200,8 @@ function readAnswer(x)
 				request_ob1.onreadystatechange=function()
 				{
 					if(request_ob1.readyState===XMLHttpRequest.DONE&&request_ob1.status===200)
-					{	wload();
+					{	con="";
+						wload();
 						console.log("success");
 					}
 					else
