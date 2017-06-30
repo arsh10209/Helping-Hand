@@ -125,7 +125,9 @@ send_btn.onclick=function()
 				</div>`;
 				
 				document.getElementById("cont").innerHTML=con;
-				user_input.value="";
+				//user_input.value="";
+				var objDiv=document.getElementById("cont");
+	objDiv.scrollTop =objDiv.scrollHeight;
 		}
 		else
 		{//document.getElementById("content").innerHTML="cannot load your question";
