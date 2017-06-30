@@ -202,7 +202,7 @@ var re=function readAnswer(x)
 					if(request_ob1.readyState===XMLHttpRequest.DONE&&request_ob1.status===200)
 					{	con="";
 						wload();
-						re();
+						re(x);
 						console.log("success");
 					}
 					else
