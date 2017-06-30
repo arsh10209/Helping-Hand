@@ -95,12 +95,13 @@ document.getElementById("logout_btn").value="Please wait.."
 }*/
 </script>
 <script>
+var arv;
 var con=arv;
 var wload=window.onload=function(){
 	var allcookies=document.cookie;
 	document.getElementById("info").innerHTML="";
 	var request1=new XMLHttpRequest();
-	var arv="";
+	arv="";
 	request1.onreadystatechange=function(){
 		if(request1.readyState===XMLHttpRequest.DONE && request1.status===200)
 		{
