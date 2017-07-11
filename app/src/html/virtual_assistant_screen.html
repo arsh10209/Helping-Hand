@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link href="style_virtual_assistant.css"rel="stylesheet">
+	<title>Helping Hand</title>
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+		<div class="container">
+			<div class="navbar-header page-scroll">
+				<h2 class="navbar-brand"><b>Helping Hand<b></h2>
+			</div>
+			<div class="nav navbar-nav navbar-right"><input type=button id=logout_btn value="Logout"></div>
+		</div>
+	</nav>
+		<div class="col-lg-1 col-lg-offset-3" id="chatbot">
+			<div class="container">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Private Counselling</div>
+					<div class="panel-body">
+						<div class="chatbox">
+							<div class="chatlogs" id=cont>
+				
+							</div>
+							<br>	
+							<form class="form-horizontal" role="form">
+								<div class="form-group">
+							<div class="col-lg-10">
+								<input class="form-control" type=text id=user_input>
+							</div>
+							<div class="col-lg-2">
+								<input type=button class="btn btn-default" id=send_btn value="send">
+							</div>
+							</div>
+							</form>
+
+						</div>
+					</div>
+				</div>
+	
+			</div>
+	</div>
+
+<script>
+var con="";
+window.onload=function(){
+	var allcookies=document.cookie;
+	//document.getElementById("info").innerHTML="<h1>Welcome</h1>"+allcookies;
+
+	var request1=new XMLHttpRequest();
+	request1.onreadystatechange=function(){
+		if(request1.readyState===XMLHttpRequest.DONE && request1.status===200)
+		{
+			//alert("refresh the page");
+			var questions = JSON.parse(this.responseText);
+			console.log(questions);
+			console.log(questions[0].question);
+			for(var i=0;i<questions.length;i++)
+				{con+=`<div class="chat">
+				<div class="user-photo">
+					
+				</div>
+				<p class="chat-message friend"><span id='display'>${questions[i].question}</span></p>
+				</div>
+				`;
+				if(questions[i].answer===null)
+				{
+					con+=`<div class="chat">
+				<div class="user-photo">
+					
+				</div><p class="chat-message self">Our experts answers in few hours</p>
+				</div>`;
+				}
+				else
+				{
+					con+=`<div class="chat">
+				<div class="user-photo">
+					
+				</div><p class="chat-message self">${questions[i].answer}</p>
+				</div>`;
+				}
+			}
+			document.getElementById("cont").innerHTML=con;
+			var objDiv=document.getElementById("cont");
+	objDiv.scrollTop =objDiv.scrollHeight;
+		}
+		else
+		{
+			document.getElementById("cont").innerHTML="Hello user! Enter your queries ?";
+		}
+	};
+	var user_Id1= getcookie_user_id();
+	console.log(user_Id1);
+	request1.open('POST',"http://data.helpinghand.hasura.me/v1/query",true);
+	request1.withCredentials=true;
+	request1.setRequestHeader('Content-type','application/json');
+	request1.send(JSON.stringify({type:"select",args:{table:"pqueans",columns:["*"],where:{user_id:user_Id1}}}));
+};
+var send_btn=document.getElementById("send_btn");
+var user_input=document.getElementById("user_input").value;
+send_btn.onclick=function()
+{
+	var request_object1=new XMLHttpRequest();
+	request_object1.onreadystatechange=function()
+	{
+		if(request_object1.readyState===XMLHttpRequest.DONE&&request_object1.status===200)
+		{	//var user_input=document.getElementById("user_input").value;
+			//document.getElementById("content").innerHTML="Question"+user_input;
+			//alert(user_input);
+			//console.log(user_input);
+			con+=`<div class="chat">
+				<div class="user-photo">
+					
+				</div>
+				<p class="chat-message friend"><span id='display'>`+user_input+`</span></p>
+				</div>
+				`;
+					con+=`<div class="chat">
+				<div class="user-photo">
+					
+				</div><p class="chat-message self">Our experts answers in few hours</p>
+				</div>`;
+				
+				document.getElementById("cont").innerHTML=con;
+				var objDiv=document.getElementById("cont");
+	objDiv.scrollTop =objDiv.scrollHeight;
+		}
+		else
+		{//document.getElementById("content").innerHTML="cannot load your question";
+		//alert("cannot load your question");
+		console.log("cannot load your question");}
+	}
+	var user_input=document.getElementById("user_input").value;
+	var send_btn=document.getElementById("send_btn");
+	//var user_id = JSON.parse(this.responseText).hasura_id;
+	var user_Id= getcookie_user_id();
+	console.log(user_Id);
+	request_object1.open('POST',"http://data.helpinghand.hasura.me/v1/query",true);
+	request_object1.withCredentials=true;
+	request_object1.setRequestHeader('Content-type','application/json');
+	request_object1.send(JSON.stringify({type:"insert",args:{table:"pqueans",objects:[{question:user_input,user_id:user_Id}]}}));
+	document.getElementById("send_btn").value="success";
+};
+var logout_btn=document.getElementById("logout_btn");
+logout_btn.onclick=function()
+{
+var request=new XMLHttpRequest();
+request.onreadystatechange=function()
+{
+	if(request.readyState===XMLHttpRequest.DONE&& request.status===200)
+	{document.getElementById("logout_btn").value="Thanks for visiting";
+	window.location.href="index.html";}
+	else
+	{document.getElementById("logout_btn").value="OOPs something went wrong";}
+}
+request.open('POST',"http://auth.helpinghand.hasura.me/user/logout",true);
+request.withCredentials=true;
+request.setRequestHeader('Authorization','Bearer');
+request.send(null);
+document.getElementById("logout_btn").value="Please wait..";
+};
+function getcookie_user_id()
+{	var x=document.cookie;
+	var decodedcookie=decodeURIComponent(x);
+	return decodedcookie;
+}
+</script>
+<script>
+
+/*window.onload=function()
+{	var usern=parseInt(document.cookie);
+	console.log(usern);
+	var request_obj=new XMLHttpRequest();
+	request_obj.onreadystatechange=function()
+	{
+		if(request_obj.readyState===XMLHttpRequest.DONE&&request_obj.status===200)
+		{
+			//var questions=JSON.parse(this.responseText);
+			//console.log(questions[0].question);
+			//document.getElementById("content").innerHTML=questions[0].question;
+			console.log(usern);
+		}
+		else
+		{
+			console.log("error");
+			document.getElementById("content").innerHTML="error";
+		}
+		//var usern=getcookie_user_id();
+		request_obj.open('POST',"http://data.vcap.me/v1/query",true);
+		request_obj.withCredentials=true;
+		request_obj.setRequestHeader('Content-type','application/json');
+		request_obj.send(JSON.stringify({type:"select",args:{table:"pqueans",columns:["*"]}}));
+	};
+};*/
+
+
+</script>
+
+</body>
+
+</html>

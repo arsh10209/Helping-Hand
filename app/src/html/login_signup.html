@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link href="login_signup_style.css" rel="stylesheet">
+	<title>Helping Hand</title>
+<head>
+<body>
+<!-- Navigation Bar-->
+<nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+		<div class="container">
+			<div class="navbar-header page-scroll">
+				<h2 class="navbar-brand"><b>Helping Hand</b></h2>
+			</div>
+		</div>
+	</nav>
+<!--login-signup section-->
+<section class="success">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-lg-offset-2">
+					<div class="panel panel-primary">
+						<div class="panel-heading"><h4>SignUp</h4></div>
+						<div class="panel-body">
+							<form role="form" >
+								<div class="form-group">
+									<label for="name">Username</label>
+									<input type=text class="form-control" id=username placeholder="Enter username">
+								</div>
+								<div class="form-group">
+									<label for="email">Email</label>
+									<input type=text class="form-control" id=email placeholder="Enter your email">
+								</div>
+								<div class="form-group">
+									<label for="password">Password</label>
+									<input type=password class="form-control" id=password placeholder="Enter your password">
+								</div>
+								<input type=button id=signup_btn class="btn btn-default btn-center" value=Signup>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4">
+						<div class="panel panel-primary">
+							<div class="panel-heading"><h4>Login</h4></div>
+							<div class="panel-body">
+							<form role="form">
+							<br><br>
+								<div class="form-group">
+									<label for="username">Username</label>
+									<input type=text class="form-control" id=username1 placeholder="Enter username">
+								</div>
+	
+								<div class="form-group">
+									<label for="password">Password</label>
+									<input type=password class="form-control" id=password1 placeholder="Enter your password">
+								</div>
+							<br>
+								<input type=button id=login_btn class="btn btn-default btn center" value=Login>
+							<br>
+							</form>
+							</div>
+						</div>
+				</div>
+	
+			</div>
+		</div>
+	</section>
+
+
+
+
+<script>
+var signup_btn = document.getElementById("signup_btn");
+	
+	signup_btn.onclick= function()
+{ 
+
+   var request= new XMLHttpRequest();
+	
+	    request.onreadystatechange= function()
+    {
+	  if(request.readyState===XMLHttpRequest.DONE && request.status===200) 
+		  {  
+		  	var username= document.getElementById("username");
+			var email=document.getElementById("email");
+			var password= document.getElementById("password");
+			username.value="";
+			email.value="";
+			password.value="";
+
+		  document.getElementById("signup_btn").value= "Sign up success";
+		  
+			}
+		else 
+			{ document.getElementById("signup_btn").value= "Oops ! somthing went wrong";}
+		  	  
+	
+  }
+	var username= document.getElementById("username").value;
+	var email=document.getElementById("email").value;
+	var password= document.getElementById("password").value;
+	var signup=document.getElementById("signup_btn");
+	request.open('POST', "http://auth.helpinghand.hasura.me/signup", true);
+	request.setRequestHeader('Content-type','application/json');
+	request.send(JSON.stringify({username:username,email:email,password:password}));
+	signup_btn.value="Please wait...";
+	
+}; 
+</script>
+<script>
+var login_btn=document.getElementById("login_btn");
+login_btn.onclick=function()
+{
+	var requestobject=new XMLHttpRequest();
+	requestobject.onreadystatechange=function()
+	{
+		if(requestobject.readyState===XMLHttpRequest.DONE&&requestobject.status===200)
+		{	
+			var user_id = JSON.parse(this.responseText).hasura_id;
+			document.cookie=user_id;
+			var username1= document.getElementById("username1").value;
+			document.getElementById("login_btn").value="valid username or password";
+			window.location.href="profile.html?username="+username1;
+		}
+		else
+		{	
+			document.getElementById("login_btn").value="Invalid username or password";
+		}
+	}
+
+	var username1= document.getElementById("username1").value;
+	var password1= document.getElementById("password1").value;
+	requestobject.open('POST',"http://auth.helpinghand.hasura.me/login",true);
+	requestobject.withCredentials=true;
+	requestobject.setRequestHeader('Content-type','application/json');
+	requestobject.send(JSON.stringify({username:username1,password:password1}));
+	document.getElementById("login_btn").value="Please wait..";
+};
+</script>
+</body>
+</html>
+

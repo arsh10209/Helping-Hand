@@ -1,0 +1,35 @@
+body
+{
+	background:#18BC9C;
+}
+.navbar-custom{
+	background:#2C3E50;
+	font-family:"Monserrat","Helivetica Neue",Helvetica,Arial,sans-serif;
+	text-transform:uppercase;
+	font-weight:700;
+	border:none;
+}
+.navbar-custom .navbar-header h2{
+	color:white;
+}
+
+section{
+	padding:100px 0;
+}
+
+.container .panel-heading{
+	background:#2C3E50;
+	
+}
+.panel-heading h4{
+	text-align:center;
+}
+#signup_btn{
+	background:#2C3E50;
+	color:white;
+}
+#login_btn{
+	background:#2C3E50;
+	color:white;
+	
+}
